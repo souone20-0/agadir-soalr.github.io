@@ -1,0 +1,194 @@
+
+
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dimensionnement Système Photovoltaïque</title>
+    <link rel="stylesheet" href="o9.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.4.0/jspdf.umd.min.js"></script>
+
+    
+
+</head>
+<body>
+    <header>
+        <header>
+            
+            <a href="index.html">
+                <img src="o1.webp" alt="Logo Agadir Solar" style="width:150px; height:auto;">
+            </a>
+        </header>
+    
+        <p>
+        <center>
+            <a href="index.html">Accueil</a>
+            <a href="about.html">À propos de nous</a> | 
+            <a href="services.html">Nos Services</a> | 
+            <a href="projects.html">Nos Projets</a> | 
+            <a href="dem.html">Dimensionnement</a> | 
+            <a href="contact.html">Nous Contacter</a>
+        </center>
+        </p>
+    </header>
+    <div class="page-container">
+        <h1>Dimensionnement Système Photovoltaïque</h1>
+        <form id="pvForm">
+            <div class="image-container">
+                
+                <label for="dailyConsumption">Consommation journalière (kWh) :</label>
+                <input type="number" id="dailyConsumption" step="0.01" required>
+            
+            </div>
+           <centre> <div class="image-container">
+                
+                <label for="sunHours">Heures d'ensoleillement par jour :</label>
+                <input type="number" id="sunHours" step="0.1" required>
+            </div>
+        </centre>
+        <centre>
+            <div class="image-container">
+                <label for="panelPower">Puissance d'un panneau (W) :</label>
+                <input type="number" id="panelPower" step="1" value="500" required>
+            </div>
+        </centre>
+            <div class="image-container">
+                <label for="panelCost">Prix d'un panneau (DH) :</label>
+                <input type="number" id="panelCost" step="0.01" value="1205.00" required>
+            </div>
+            <div class="image-container">
+                <label for="batteryCapacity">Capacité d'une batterie (Ah, 12V) :</label>
+                <input type="number" id="batteryCapacity" step="1" value="200" required>
+            </div>
+            <div class="image-container">
+                <label for="batteryCost">Prix d'une batterie (DH) :</label>
+                <input type="number" id="batteryCost" step="0.01" value="2000.00" required>
+            </div>
+            <div class="image-container">
+                <label for="regulatorCapacity">Capacité d'un régulateur (A) :</label>
+                <input type="number" id="regulatorCapacity" step="1" value="40" required>
+            </div>
+            <div class="image-container">
+                <label for="regulatorCost">Prix d'un régulateur (DH) :</label>
+                <input type="number" id="regulatorCost" step="0.01" value="500.00" required>
+            </div>
+            <div class="image-container">
+                <label for="inverterPower">Puissance d'un onduleur (W) :</label>
+                <input type="number" id="inverterPower" step="1" value="3000" required>
+            </div>
+            <div class="image-container">
+                <label for="inverterCost">Prix d'un onduleur (DH) :</label>
+                <input type="number" id="inverterCost" step="0.01" value="2500.00" required>
+            </div>
+            <button type="button" onclick="calculateSizing()">Calculer</button>
+        </form>
+        <div class="results" id="results"></div>
+    
+    </div>
+   
+    <button type="button" onclick="downloadPDF()">Télécharger les Résultats en PDF</button>
+
+  
+
+
+
+<script>
+    let sizingResults = {}; // Global object to store the results
+
+    function calculateSizing() {
+        const dailyConsumption = parseFloat(document.getElementById('dailyConsumption').value) * 1000;
+        const sunHours = parseFloat(document.getElementById('sunHours').value);
+        const panelPower = parseFloat(document.getElementById('panelPower').value);
+        const panelCost = parseFloat(document.getElementById('panelCost').value);
+        const batteryCapacity = parseFloat(document.getElementById('batteryCapacity').value) * 12; 
+        const batteryCost = parseFloat(document.getElementById('batteryCost').value);
+        const regulatorCapacity = parseFloat(document.getElementById('regulatorCapacity').value);
+        const regulatorCost = parseFloat(document.getElementById('regulatorCost').value);
+        const inverterPower = parseFloat(document.getElementById('inverterPower').value);
+        const inverterCost = parseFloat(document.getElementById('inverterCost').value);
+
+        if (!dailyConsumption || !sunHours || !panelPower || !panelCost || !batteryCapacity || 
+            !batteryCost || !regulatorCapacity || !regulatorCost || !inverterPower || !inverterCost) {
+            alert("Veuillez remplir tous les champs.");
+            return;
+        }
+
+        const energyPerPanel = panelPower * sunHours;
+        const numberOfPanels = Math.ceil(dailyConsumption / energyPerPanel);
+
+        const batteryStorage = Math.ceil(dailyConsumption * 1.5); 
+        const numberOfBatteries = Math.ceil(batteryStorage / batteryCapacity);
+
+        const totalPanelCurrent = (numberOfPanels * panelPower) / 12; 
+        const numberOfRegulators = Math.ceil(totalPanelCurrent / regulatorCapacity);
+
+        const numberOfInverters = Math.ceil(dailyConsumption / inverterPower);
+
+        const totalPanelCost = numberOfPanels * panelCost;
+        const totalBatteryCost = numberOfBatteries * batteryCost;
+        const totalRegulatorCost = numberOfRegulators * regulatorCost;
+        const totalInverterCost = numberOfInverters * inverterCost;
+        const totalCost = totalPanelCost + totalBatteryCost + totalRegulatorCost + totalInverterCost;
+
+        sizingResults = {
+            numberOfPanels,
+            numberOfBatteries,
+            numberOfRegulators,
+            numberOfInverters,
+            totalPanelCost,
+            totalBatteryCost,
+            totalRegulatorCost,
+            totalInverterCost,
+            totalCost
+        };
+
+        const resultsDiv = document.getElementById('results');
+        resultsDiv.innerHTML = `
+            <h2>Résultats</h2>
+            <p><strong>Nombre de panneaux solaires nécessaires :</strong> ${numberOfPanels}</p>
+            <p><strong>Nombre de batteries nécessaires :</strong> ${numberOfBatteries}</p>
+            <p><strong>Nombre de régulateurs nécessaires :</strong> ${numberOfRegulators}</p>
+            <p><strong>Nombre d'onduleurs nécessaires :</strong> ${numberOfInverters}</p>
+            <h3>Coûts de matériel:</h3>
+            <p><strong>Coût total des panneaux :</strong> ${totalPanelCost.toFixed(2)} DH</p>
+            <p><strong>Coût total des batteries :</strong> ${totalBatteryCost.toFixed(2)} DH</p>
+            <p><strong>Coût total des régulateurs :</strong> ${totalRegulatorCost.toFixed(2)} DH</p>
+            <p><strong>Coût total des onduleurs :</strong> ${totalInverterCost.toFixed(2)} DH</p>
+            <h3><strong>Coût total du système :</strong> ${totalCost.toFixed(2)} DH</h3>
+        `;
+    }
+
+    async function downloadPDF() {
+        const { jsPDF } = window.jspdf;
+        const pdf = new jsPDF();
+     
+        pdf.setFont("calibri", "bold");
+    pdf.setFontSize(16);
+    pdf.text("Dimensionnement Système Photovoltaïque - Résultats",40, 10);
+    pdf.setFontSize(12);
+    pdf.setFont("helvetica", "normal");
+    
+        pdf.text(`Nombre de panneaux solaires nécessaires: ${sizingResults.numberOfPanels}`, 10, 20);
+        pdf.text(`Nombre de batteries nécessaires: ${sizingResults.numberOfBatteries}`, 10, 30);
+        pdf.text(`Nombre de régulateurs nécessaires: ${sizingResults.numberOfRegulators}`, 10, 40);
+        pdf.text(`Nombre d'onduleurs nécessaires: ${sizingResults.numberOfInverters}`, 10, 50);
+        pdf.setFont("calibri", "bold");
+        pdf.setFontSize(14);
+        pdf.text("Coûts de matériel", 80, 60);
+        pdf.text(`Coût total des panneaux: ${sizingResults.totalPanelCost.toFixed(2)} DH`, 10, 70);
+        pdf.text(`Coût total des batteries: ${sizingResults.totalBatteryCost.toFixed(2)} DH`, 10, 80);
+        pdf.text(`Coût total des régulateurs: ${sizingResults.totalRegulatorCost.toFixed(2)} DH`, 10, 90);
+        pdf.text(`Coût total des onduleurs: ${sizingResults.totalInverterCost.toFixed(2)} DH`, 10, 100);
+        pdf.text(`Coût total du système: ${sizingResults.totalCost.toFixed(2)} DH`, 10, 110);
+
+        pdf.save("Dimensionnement_Système_Photovoltaïque.pdf");
+    }
+
+
+    </script>
+
+
+</body>
+</html>
+ 

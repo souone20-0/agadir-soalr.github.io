@@ -5,6 +5,9 @@
    
     <title>Agadir Solar - Accueil</title>
     <link rel="stylesheet" href="style.css">
+    <script>
+        
+    </script>
 </head>
 <body>
     <header>
@@ -15,15 +18,19 @@
         <p >
             <center>
                 <a href="index.html">Accueil</a>
-                <a href="about.html">À propos de nous</a> | 
-                <a href="services.html">Nos Services</a> | 
-                <a href="projects.html">Nos Projets</a> | 
-                <a href="contact.html">Nous Contacter</a>
+            <a href="about.html">À propos de nous</a> | 
+            <a href="services.html">Nos Services</a> | 
+            <a href="projects.html">Nos Projets</a> | 
+            <a href="dem.html">Dimensionnement</a> | 
+            <a href="contact.html">Nous Contacter</a>
         </center>
         </p>
     </header>
     <div class="page-container">
-    <h1>Bienvenue chez Agadir Solar</h1>
+        <div id="welcomeMessage" style="display: none; text-align: center; margin-top: 20px;">
+            <h2 id="welcomeText"></h2>
+        </div>
+    
    
     
     <p>Nous sommes votre partenaire de confiance pour des solutions solaires durables. Découvrez comment nous pouvons vous aider à économiser sur les coûts énergétiques tout en contribuant à un avenir plus vert.</p>
@@ -92,6 +99,63 @@
 
         Nous vous offrons également un service après-vente réactif et une maintenance proactive pour garantir le bon fonctionnement de vos installations sur le long terme. Pour toute demande de devis, d’informations complémentaires ou pour discuter de votre projet, n’hésitez pas à nous contacter. Vous pouvez nous joindre par téléphone, email, ou via notre site web. Nous nous engageons à vous répondre dans les plus brefs délais et à vous fournir un service de qualité. Ensemble, construisons un avenir énergétique plus vert et plus responsable.</p></div>
 </div>
+<div id="cookieBanner" style="background: #000; color: #fff; padding: 20px; text-align: center; position: fixed; bottom: 0; width: 100%;">
+    <p>
+        Ce site utilise des cookies pour améliorer votre expérience. 
+        En continuant, vous acceptez notre 
+        <a href="cookies.html" style="color: #00f;">politique de cookies</a>.
+    </p>
+    <div style="margin-top: 10px;">
+        <input type="text" id="userName" placeholder="Entrez votre nom" style="padding: 10px; margin-right: 10px; border: 1px solid #ccc; border-radius: 5px;" />
+        <button id="acceptCookies" style="padding: 10px 20px; background-color: #007bff; color: white; border: none; border-radius: 5px; cursor: pointer;">
+            Accepter
+        </button>
+    </div>
 </div>
+
+
+<script>
+    document.addEventListener("DOMContentLoaded", function () {
+        const userName = getCookie("userName");
+        if (userName) {
+            document.getElementById("cookieBanner").style.display = "none";
+            document.getElementById("welcomeMessage").style.display = "block";
+            document.getElementById("welcomeText").innerText = `Bienvenue ${userName} chez Agadir Solar !`;
+        }
+    });
+    
+    
+    document.getElementById("acceptCookies").addEventListener("click", function () {
+        const nameInput = document.getElementById("userName").value;
+        if (nameInput.trim()) {
+            setCookie("userName", nameInput, 30); 
+            document.getElementById("cookieBanner").style.display = "none";
+            document.getElementById("welcomeMessage").style.display = "block";
+            document.getElementById("welcomeText").innerText = `Bienvenue ${nameInput} chez Agadir Solar !`;
+        } else {
+            alert("Veuillez entrer votre nom.");
+        }
+    });
+    
+ 
+    function setCookie(name, value, days) {
+        const date = new Date();
+        date.setTime(date.getTime() + days * 24 * 60 * 60 * 1000);
+        const expires = "expires=" + date.toUTCString();
+        document.cookie = `${name}=${value}; ${expires}; path=/`;
+    }
+    
+  
+    function getCookie(name) {
+        const cookieArr = document.cookie.split("; ");
+        for (let i = 0; i < cookieArr.length; i++) {
+            const cookiePair = cookieArr[i].split("=");
+            if (name === cookiePair[0]) {
+                return cookiePair[1];
+            }
+        }
+        return null;
+    }
+    </script>
 </body>
 </html>

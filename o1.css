@@ -47,9 +47,9 @@ img {
     border-radius: 10%; 
     object-position: top center;
     box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.3);
-    display: flex; /* Enables Flexbox */
-    justify-content: center; /* Centers horizontally */
-    align-items: center; /* Centers vertically */
+    display: flex; 
+    justify-content: center; 
+    align-items: center; 
       
         
   
@@ -64,25 +64,25 @@ img:hover {
 .image-container {
     position: relative;
     display: inline-block;
-    margin: 20px; /* Space around each image */
+    margin: 20px; 
     width: auto;
-    max-width: 90%; /* Images adapt to smaller screens */
-    display: flex; /* Enables Flexbox */
-    justify-content: center; /* Centers horizontally */
-    align-items: center; /* Centers vertically */
+    max-width: 90%; 
+    display: flex; 
+    justify-content: center; 
+    align-items: center; 
     overflow: hidden;
     box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
     transition: transform 0.3s ease-in-out;
     overflow: hidden;
 }
 
-/* On hover, scale up the image container slightly */
+
 .image-container:hover {
     transform: scale(1.05);
-    transform: translateX(20px); /* Move the image to the right */
+    transform: translateX(20px); 
 }
 
-/* The image itself */
+
 .image-container img {
     display: block;
    
@@ -92,65 +92,65 @@ img:hover {
     border-radius: 10%; 
     object-position: top center;
     box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.3);
-    display: flex; /* Enables Flexbox */
-    justify-content: center; /* Centers horizontally */
-    align-items: center; /* Centers vertically */
+    display: flex; 
+    justify-content: center;
+    align-items: center; 
 }
 
-/* Overlay text on hover */
+
 .image-container .overlay {
     position: relative;
     top: 0;
     left: 0;
     width: 40%;
     height: 35%;
-    background: rgba(255, 255, 255, 0.192); /* Black with transparency */
+    background: rgba(255, 255, 255, 0.192); 
     color: rgb(0, 0, 0);
     display: block;
     justify-content: center;
     align-items: center;
     text-align: center;
     font-size: 1.2em;
-    opacity: 0; /* Hidden by default */
+    opacity: 0; 
     transition: opacity 0.3s ease-in-out;
     padding: 10px;
    
 }
 
-/* Show overlay on hover */
+
 .image-container:hover .overlay {
     opacity: 1;
     
 }
 
-/* Optional responsive styles */
+
 @media (max-width: 768px) {
     .overlay {
-        font-size: 18px;  /* Set a fixed size for the font */
+        font-size: 18px; 
     }
     .overlay p {
-        font-size: 18px;  /* Fix font size to prevent it from changing */
+        font-size: 18px;  /
     }
 }
 .page-container {
-    border: 10px solid #ccc; /* Border width, style, and color */
-    margin: 20px; /* Space around the container */
-    padding: 20px; /* Space inside the border */
-    background-color: #ffffff; /* Optional: Set a background color */
-    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1); /* Optional: Add a shadow for depth */
-    box-sizing: border-box; /* Ensures padding and border are included in the total size */
+    border: 10px solid #ccc; 
+    margin: 20px; 
+    padding: 20px; 
+    background-color: #ffffff; 
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1); 
+    box-sizing: border-box; 
 }
 .overlay p {
-    font-family: 'calibri', sans-serif; /* Change font */
-    font-size: 18px; /* Fix the font size to avoid zoom scaling */
-    font-weight: lighter; /* Make text bold */
-    color: rgba(0, 0, 0, 0.425); /* Text color */
+    font-family: 'calibri', sans-serif; 
+    font-size: 18px; 
+    font-weight: lighter; 
+    color: rgba(0, 0, 0, 0.425); 
     text-align: left;
-    text-shadow: 2px 2px 5px rgba(202, 199, 199, 0.7); /* Optional shadow for better visibility */
+    text-shadow: 2px 2px 5px rgba(202, 199, 199, 0.7); 
 
 }
 .overlay-content {
-    box-sizing: border-box; /* Ensures padding is included in width calculations */
+    box-sizing: border-box; 
 }
 .overlay {
     position: relative;
@@ -158,40 +158,40 @@ img:hover {
     left: 0;
     width: 20%;
     height: 20%;
-    background: rgba(255, 255, 255, 0.192); /* Black with transparency */
+    background: rgba(255, 255, 255, 0.192); 
     color: rgb(0, 0, 0);
     display: flex;
     justify-content: center;
     align-items: center;
     text-align: center;
-    font-size: 1.2em;  /* Set a fixed font size */
-    opacity: 0; /* Hidden by default */
+    font-size: 1.2em;  
+    opacity: 0; 
     transition: opacity 0.3s ease-in-out;
     padding: 10px;
-    box-sizing: border-box; /* Ensure padding is considered */
+    box-sizing: border-box; 
 }
 .image-container1 {
     position: relative;
     display: inline-block;
-    margin: 20px; /* Space around each image */
+    margin: 20px; 
     width: auto;
-    max-width: 90%; /* Images adapt to smaller screens */
-    display: flex; /* Enables Flexbox */
-    justify-content: center; /* Centers horizontally */
-    align-items: center; /* Centers vertically */
+    max-width: 90%; 
+    display: flex; 
+    justify-content: center; 
+    align-items: center; 
     overflow: hidden;
     box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
     transition: transform 0.3s ease-in-out;
     overflow: hidden;
 }
 
-/* On hover, scale up the image container slightly */
+
 .image-container1:hover {
     transform: scale(1.05);
-    transform: translateX(20px); /* Move the image to the right */
+    transform: translateX(20px); 
 }
 
-/* The image itself */
+
 .image-container1 img {
     display: block;
    
@@ -201,58 +201,58 @@ img:hover {
     border-radius: 100%; 
     object-position: top center;
     box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.3);
-    display: flex; /* Enables Flexbox */
-    justify-content: center; /* Centers horizontally */
-    align-items: center; /* Centers vertically */
+    display: flex; 
+    justify-content: center; 
+    align-items: center; 
 }
 
-/* Overlay text on hover */
+
 .image-container1 .overlay1 {
     position: relative;
     top: 0;
     left: 0;
     width: 40%;
     height: 35%;
-    background: rgba(255, 255, 255, 0.192); /* Black with transparency */
+    background: rgba(255, 255, 255, 0.192); 
     color: rgb(0, 0, 0);
     display: block;
     justify-content: center;
     align-items: center;
     text-align: center;
     font-size: 1.2em;
-    opacity: 0; /* Hidden by default */
+    opacity: 0; 
     transition: opacity 0.3s ease-in-out;
     padding: 10px;
    
 }
 
-/* Show overlay on hover */
+
 .image-container1:hover .overlay1 {
     opacity: 1;
     
 }
 
-/* Optional responsive styles */
+
 @media (max-width: 768px) {
     .overlay1 {
-        font-size: 18px;  /* Set a fixed size for the font */
+        font-size: 18px; 
     }
     .overlay1 p {
-        font-size: 18px;  /* Fix font size to prevent it from changing */
+        font-size: 18px;  
     }
 }
 
 .overlay1 p {
-    font-family: 'calibri', sans-serif; /* Change font */
-    font-size: 18px; /* Fix the font size to avoid zoom scaling */
-    font-weight: lighter; /* Make text bold */
-    color: rgba(0, 0, 0, 0.425); /* Text color */
+    font-family: 'calibri', sans-serif; 
+    font-size: 18px; 
+    font-weight: lighter; 
+    color: rgba(0, 0, 0, 0.425);
     text-align: left;
-    text-shadow: 2px 2px 5px rgba(202, 199, 199, 0.7); /* Optional shadow for better visibility */
+    text-shadow: 2px 2px 5px rgba(202, 199, 199, 0.7); 
 
 }
 .overlay1-content {
-    box-sizing: border-box; /* Ensures padding is included in width calculations */
+    box-sizing: border-box; 
 }
 .overlay1 {
     position: relative;
@@ -260,27 +260,27 @@ img:hover {
     left: 0;
     width: 20%;
     height: 20%;
-    background: rgba(255, 255, 255, 0.192); /* Black with transparency */
+    background: rgba(255, 255, 255, 0.192); 
     color: rgb(0, 0, 0);
     display: flex;
     justify-content: center;
     align-items: center;
     text-align: center;
-    font-size: 1.2em;  /* Set a fixed font size */
-    opacity: 0; /* Hidden by default */
+    font-size: 1.2em;  
+    opacity: 0;
     transition: opacity 0.3s ease-in-out;
     padding: 10px;
-    box-sizing: border-box; /* Ensure padding is considered */
+    box-sizing: border-box; 
 }
 .texte-container {
     position: relative;
     display: inline-block;
-    margin: 20px; /* Space around each image */
+    margin: 20px; 
     width: auto;
-    max-width: 90%; /* Images adapt to smaller screens */
-    display: flex; /* Enables Flexbox */
-    justify-content: center; /* Centers horizontally */
-    align-items: center; /* Centers vertically */
+    max-width: 90%; 
+    display: flex; 
+    justify-content: center;
+    align-items: center; 
     overflow: hidden;
     box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
     transition: transform 0.3s ease-in-out;

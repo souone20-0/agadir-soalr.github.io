@@ -75,6 +75,7 @@ img:hover {
     box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
     transition: transform 0.3s ease-in-out;
     overflow: hidden;
+   
 }
 
 /* On hover, scale up the image container slightly */
@@ -133,6 +134,7 @@ img:hover {
     background-color: #ffffff; /* Optional: Set a background color */
     box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1); /* Optional: Add a shadow for depth */
     box-sizing: border-box; /* Ensures padding and border are included in the total size */
+
 }
 .overlay p {
     font-family: 'calibri', sans-serif; /* Change font */
@@ -163,4 +165,38 @@ img:hover {
     transition: opacity 0.3s ease-in-out;
     padding: 10px;
     box-sizing: border-box; /* Ensure padding is considered */
+}
+#cookieBanner input {
+    font-size: 14px;
+    width: 250px;
+}
+
+#cookieBanner button:hover {
+    background-color: #0056b3;
+}
+
+#welcomeMessage {
+    background-color: #f0f0f0;
+    color: #333;
+    padding: 15px;
+    border-radius: 8px;
+}
+#cookieBanner {
+    background-color: rgba(255, 255, 255, 0.779) !important; /* Force le fond blanc */
+   
+    padding: 20px;
+    text-align: center;
+    position: fixed;
+    bottom: 0;
+    width: 100%;
+    box-shadow: 0px -2px 10px rgba(0, 0, 0, 0.1);
+}
+#cookieBanner p {
+    font-family: 'calibri', 'Times New Roman', sans-serif;
+    color: black; /* Changer la couleur du texte dans un paragraphe spécifique */
+}
+
+#cookieBanner button {
+    background-color: #4CAF50; /* Couleur du bouton */
+    color: white; /* Couleur du texte du bouton */
 }
